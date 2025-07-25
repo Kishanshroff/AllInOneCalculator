@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Calculator Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app">
+
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <a href="#home" class="logo nav-link">
+                        <i data-lucide="gem" style="color: var(--primary-500);"></i>
+                        <span class="logo-text">All In One FinCalc</span>
+                    </a>
+                    <div class="nav-actions">
+                        <nav>
+                            <a href="#home" class="nav-link">Home</a>
+                            <a href="#exchange" class="nav-link">Currency Exchange</a>
+                            <a href="#budget" class="nav-link">Budget Planner</a>
+                            <a href="#salary" class="nav-link">Salary Calculator</a>
+                        </nav>
+                        <button id="theme-toggle" class="icon-button">
+                            <i id="theme-icon-sun" data-lucide="sun"></i>
+                            <i id="theme-icon-moon" data-lucide="moon"></i>
+                        </button>
+                         <button id="mobile-menu-button" class="icon-button">
+                            <i data-lucide="menu"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#exchange" class="nav-link">Currency Exchange</a>
+                <a href="#budget" class="nav-link">Budget Planner</a>
+                <a href="#salary" class="nav-link">Salary Calculator</a>
+            </div>
+        </header>
+
+        <main class="container">
+            <div id="home" class="page active">
+                <h1 class="page-title">Financial Calculators</h1>
+                <div class="calculators-grid">
+                    <a href="#mortgage" class="calculator-card nav-link">
+                        <i data-lucide="home" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Mortgage Calculator</h2>
+                        <p>Estimate mortgage payments.</p>
+                    </a>
+                    <a href="#loan" class="calculator-card nav-link">
+                        <i data-lucide="landmark" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Loan Calculator</h2>
+                        <p>Estimate general loan payments.</p>
+                    </a>
+                    <a href="#savings" class="calculator-card nav-link">
+                        <i data-lucide="piggy-bank" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Savings Calculator</h2>
+                        <p>Plan your savings goals.</p>
+                    </a>
+                    <a href="#investment" class="calculator-card nav-link">
+                        <i data-lucide="trending-up" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Investment Calculator</h2>
+                        <p>Project investment growth.</p>
+                    </a>
+                    <a href="#retirement" class="calculator-card nav-link">
+                        <i data-lucide="umbrella" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Retirement Calculator</h2>
+                        <p>Plan for your retirement.</p>
+                    </a>
+                    <a href="#tip" class="calculator-card nav-link">
+                        <i data-lucide="receipt" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Tip Calculator</h2>
+                        <p>Calculate tips and split bills.</p>
+                    </a>
+                    <a href="#budget" class="calculator-card nav-link">
+                        <i data-lucide="wallet" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Budget Planner</h2>
+                        <p>Manage income and expenses.</p>
+                    </a>
+                     <a href="#salary" class="calculator-card nav-link">
+                        <i data-lucide="briefcase" style="color: var(--primary-500); height: 3rem; width: 3rem; margin: auto;"></i>
+                        <h2>Salary Calculator</h2>
+                        <p>Estimate your net pay.</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div id="mortgage" class="page"></div>
+            <div id="loan" class="page"></div>
+            <div id="savings" class="page"></div>
+            <div id="investment" class="page"></div>
+            <div id="retirement" class="page"></div>
+            <div id="budget" class="page"></div>
+            <div id="salary" class="page"></div>
+
+            <div id="tip" class="page">
+                <div style="max-width: 42rem; margin: auto;">
+                    <div class="form-container">
+                        <h2>Tip Calculator</h2>
+                        <form id="tip-form">
+                            <div class="form-group">
+                                <label for="tip-bill">Bill Amount (Rs.)</label>
+                                <input type="number" id="tip-bill" step="0.01" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tip-percentage">Tip Percentage (%)</label>
+                                <input type="number" id="tip-percentage" value="15" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tip-split">Split Between (People)</label>
+                                <input type="number" id="tip-split" value="1" class="form-input" required>
+                            </div>
+                        </form>
+                        <div id="tip-results" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--slate-200);"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="exchange" class="page">
+                 <div style="max-width: 48rem; margin: auto;">
+                    <div class="form-container">
+                        <h2>Currency Exchange</h2>
+                        <div id="exchange-container">
+                            <div class="form-group">
+                                <label for="exchange-amount">Amount</label>
+                                <input type="number" id="exchange-amount" value="1" class="form-input">
+                            </div>
+                            <div class="exchange-form-grid">
+                                <div class="form-group">
+                                    <label for="from-currency">From</label>
+                                    <select id="from-currency" class="form-input"></select>
+                                </div>
+                                 <button id="swap-currency" class="icon-button">
+                                    <i data-lucide="arrow-right-left"></i>
+                                </button>
+                                <div class="form-group">
+                                    <label for="to-currency">To</label>
+                                    <select id="to-currency" class="form-input"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="exchange-results">
+                            <p id="exchange-rate-info">Loading exchange rates...</p>
+                            <p id="exchange-final-result"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <p>Finance Calculators &copy; 2025 | All-in-One Financial Toolkit</p>
+                 <p>Disclaimer: This tool provides estimates only. Actual results may vary.</p>
+                    <p>Developed by Krishna Sonar</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
