@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const finalResult = document.getElementById('exchange-final-result');
         let rates = {};
         // Updated API URL to exchangerate.host for better flexibility and current rates
-        const apiUrl = 'https://api.exchangerate.host/latest'; 
+        const apiUrl = 'https://open.er-api.com/v6/latest'; 
 
         async function fetchRates() {
             try {
