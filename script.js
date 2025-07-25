@@ -478,17 +478,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const rateInfo = document.getElementById('exchange-rate-info');
         const finalResult = document.getElementById('exchange-final-result');
         let rates = {};
-        // Updated API URL to exchangerate.host for better flexibility and current rates
-        const apiUrl = 'https://open.er-api.com/v6/latest'; 
+        const apiUrl = 'https://api.exchangerate-api.com/v4/latest/USD';
 
         async function fetchRates() {
             try {
-                const fromCurrency = fromSelect.value;
-                // Fetch rates based on the 'from' currency
-                const response = await fetch(`${apiUrl}?base=${fromCurrency}`); 
+                const response = await fetch(apiUrl);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                rates = data.rates; // Access the rates object
+                rates = data.rates;
                 populateCurrencies();
                 calculateExchange();
             } catch (error) {
@@ -512,12 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fromCurrency = fromSelect.value;
             const toCurrency = toSelect.value;
             const amount = parseFloat(amountInput.value) || 0;
-            
-            // Calculate rate relative to 'fromCurrency'
-            // Since the API returns rates relative to the base, we can directly use them.
-            // If the base changes, we refetch rates, so `rates[toCurrency]` is already relative to `fromCurrency`.
-            const rate = rates[toCurrency]; 
-            
+            const rate = rates[toCurrency] / rates[fromCurrency];
             const result = amount * rate;
             rateInfo.textContent = `1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}`;
             finalResult.textContent = formatCurrency(result, toCurrency);
@@ -527,11 +519,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const temp = fromSelect.value;
             fromSelect.value = toSelect.value;
             toSelect.value = temp;
-            fetchRates(); // Re-fetch rates when currencies are swapped, as the base changes
+            calculateExchange();
         }
         [fromSelect, toSelect, amountInput].forEach(el => el.addEventListener('input', calculateExchange));
-        // Add event listener to fromSelect to refetch rates when the base currency changes
-        fromSelect.addEventListener('change', fetchRates); 
         swapButton.addEventListener('click', swapCurrencies);
         fetchRates();
     }
